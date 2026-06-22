@@ -1,0 +1,67 @@
+{
+  "title": "Goiania vs Brasilia -> Austin (example)",
+  "subtitle": "Round-trip &middot; economy &middot; 1 adult &middot; BRL &middot; out Sun 19 Jul 2026 &middot; return Sat 08 Aug 2026",
+  "currency": "R$",
+  "currency_code": "BRL",
+  "dest": "AUS",
+  "out_date": "2026-07-19",
+  "out_label": "19/07 Sun",
+  "boxes": [
+    {"kind": "ok", "html": "<b>&#10003; All fares verified single-ticket</b> on Kayak (one airline, one contract) &mdash; no self-transfer risk. Prices are real round-trip fares."},
+    {"kind": "constraint", "html": "<b>&#9888; Constraints:</b> outbound moved to Sun 19/07 (appointment 18/07 AM); weekend travel days only; budget &le; R$9000."},
+    {"kind": "legend", "html": "<b>Duration</b> = longest single leg (bold) + round-trip total; orange = leg &ge; ~21h. <b>Score</b> normalized within each section."}
+  ],
+  "verdict": {
+    "heading": "Verdict - true cost from your door (Goiania)",
+    "note": "Every BSB option first needs a GYN&harr;BSB hop. Counting that as money + 1 stop + time. Ground est: bus ~R$100/leg, ~3h30 + buffer.",
+    "columns": ["Door-to-door option", "Air fare", "+ Ground", "Total ~", "Eff. stops", "In-air legs", "Hassle"],
+    "rows": [
+      ["<b>Fly GYN direct</b> - LATAM", "R$7.128", "none", "<span class=\"price\">~R$7.128</span>", "2 / 2", "18h28 / 18h36", "1 ticket, no transfers"],
+      ["<b>BSB round-trip</b> - GOL 1-stop", "R$6.610", "+~R$200", "<span class=\"price\">~R$6.810</span>", "2 / 2*", "<b>13h05 / 12h05</b>", "2 bus rides + likely BSB hotel"]
+    ],
+    "conclusion_html": "<b>Door-to-door, BSB round-trip (~R$6.810) ties flying GYN direct (~R$7.128)</b> once the bus + extra connection + pre-flight night are counted. Simpler pick: <b>fly GYN direct, LATAM R$7.128</b>. Choose BSB only for shorter time in the air."
+  },
+  "sections": [
+    {
+      "id": "BSB", "name": "Brasilia (BSB)", "css": "bsb", "origin": "BSB", "retcity": "BSB", "linktype": "rt",
+      "note": "All single-ticket. Three rankings - same flights, different priorities.",
+      "combos": [
+        {"price": 6610, "ret_label": "08/08 Sat", "ret_date": "2026-08-08",
+         "o": {"t": "23:00", "air": "GOL", "st": 1, "route": "MIA", "mm": 785, "lab": "13h05"},
+         "r": {"t": "05:05", "air": "GOL", "st": 1, "route": "MIA", "mm": 725, "lab": "12h05"}},
+        {"price": 7078, "ret_label": "08/08 Sat", "ret_date": "2026-08-08",
+         "o": {"t": "10:00", "air": "GOL", "st": 1, "route": "MIA", "mm": 959, "lab": "15h59"},
+         "r": {"t": "05:05", "air": "GOL", "st": 1, "route": "MIA", "mm": 725, "lab": "12h05"}}
+      ]
+    },
+    {
+      "id": "GYN", "name": "Goiania (GYN)", "css": "", "origin": "GYN", "retcity": "GYN", "linktype": "rt",
+      "note": "All single-ticket. GYN has no 1-stop option; many routes connect through BSB anyway.",
+      "combos": [
+        {"price": 7128, "ret_label": "08/08 Sat", "ret_date": "2026-08-08",
+         "o": {"t": "04:45", "air": "LATAM", "st": 2, "route": "GRU+MIA", "mm": 1108, "lab": "18h28"},
+         "r": {"t": "13:34", "air": "LATAM", "st": 2, "route": "ATL+GRU", "mm": 1116, "lab": "18h36"}},
+        {"price": 6078, "ret_label": "08/08 Sat", "ret_date": "2026-08-08",
+         "o": {"t": "18:35", "air": "GOL", "st": 2, "route": "BSB+MIA", "mm": 1050, "lab": "17h30"},
+         "r": {"t": "05:05", "air": "GOL", "st": 2, "route": "MIA+BSB (14h35 layover)", "mm": 1655, "lab": "27h35"}}
+      ]
+    },
+    {
+      "id": "OJ", "name": "Open-jaw: depart BSB, fly home to GYN", "css": "oj", "origin": "BSB", "retcity": "GYN",
+      "linktype": "openjaw", "openjaw_dest": "GYN",
+      "note": "Out of BSB, home into GYN (no drive back). Single-ticket only; self-transfer excluded.",
+      "combos": [
+        {"price": 7592, "ret_label": "08/08 Sat", "ret_date": "2026-08-08",
+         "o": {"t": "19:35", "air": "American", "st": 2, "route": "GRU+MIA", "mm": 1070, "lab": "17h50"},
+         "r": {"t": "12:23", "air": "American", "st": 2, "route": "JFK+GRU", "mm": 1207, "lab": "20h07"}}
+      ]
+    }
+  ],
+  "how_steps": [
+    "Click any <b>Kayak</b> button - exact city pair + dates. The matching fare is near the top; match by departure time + airline.",
+    "Confirm it shows the expected stop count and is <b>not</b> tagged \"Conexao por conta propria\" / KAYAK Mix (those are self-transfer).",
+    "Book on the airline's own site when the price matches, for best change/cancel protection.",
+    "US connection (MIA/ATL/etc): a valid US visa is required regardless; single ticket = bags checked through.",
+    "Set a price alert; fares move daily."
+  ]
+}
