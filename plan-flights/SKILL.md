@@ -13,8 +13,7 @@ description: >-
 # Plan Flights
 
 Turn a flight request into a ranked, visual HTML report backed by **verified
-single-ticket fares**. Mirrors the workflow that produced
-`C:\devhome\flights-gyn-bsb-austin.html`.
+single-ticket fares**.
 
 ## Core rule (never relax)
 **Single-ticket only.** Only recommend itineraries sold as one ticket / one
@@ -98,8 +97,8 @@ Assemble a JSON spec (schema = `scripts/example.json`) and run:
 ```
 python "%USERPROFILE%\.claude\skills\plan-flights\scripts\gen_flights.py" spec.json out.html
 ```
-On this machine write output under `C:\devhome\` (see the user's standing path
-rule). The generator produces, per the JSON:
+Write output under `%USERPROFILE%\Documents\` unless the user indicates another
+location. The generator produces, per the JSON:
 - header + constraint/legend/verified boxes,
 - an optional **Verdict** section (door-to-door, see below),
 - one **section per origin** (and an **open-jaw** section if used), each with the
@@ -109,6 +108,26 @@ rule). The generator produces, per the JSON:
   round-trip total, orange flag for legs ≥ ~21h, and a "how to book" list.
 
 Open it (`Start-Process out.html` on Windows) and summarize the winner per ranking.
+
+**Characters/encoding (important):** write all JSON text as **plain UTF-8**
+(acentos, →, ✓, etc.) — **never HTML entities** like `&aacute;` or `&rarr;`.
+The generator HTML-escapes plain-text fields (`title`, `subtitle` is raw but
+others aren't: section `name`, verdict `heading`/`columns`, `out_label`,
+`ret_label`, and each leg's `air`/`route`/`lab`), so entities there get
+double-escaped and render literally as `&aacute;` on the page. Raw-HTML fields
+(`boxes[].html`, section `note`, verdict `rows`/`conclusion_html`, `how_steps`)
+accept `<b>` etc., and plain UTF-8 works everywhere — so just use real
+characters in every field.
+
+**Per-date fields:** when a report mixes outbound dates (relaxed windows),
+set `out_date` + `out_label` on each combo (falls back to section, then spec) —
+the Kayak deep link and the date shown in the row follow the combo's own dates.
+
+**Flexible-date sweep:** to scan a window efficiently, Kayak accepts
+`{YYYY-MM-DD}-flexible-3days` in place of each date (±3 max). The results page
+then includes a date×date price matrix and each result row is labeled with its
+dates — two overlapping ±3 grids cover a ±5 window in 2 page loads per origin.
+Rows read this way are real single-ticket fares (same skip rules apply).
 
 ### Door-to-door Verdict (when alternate airports are in play)
 If a cheaper/faster alternate origin needs a ground hop (bus/short flight) to

@@ -29,8 +29,10 @@ def book_base(spec):
                }.get(spec.get("currency_code", "").upper(), "www.kayak.com")
     return dom
 
-def kayak(spec, sec, ret_date):
-    origin = sec["origin"]; dest = sec.get("dest", spec["dest"]); outd = spec["out_date"]; dom = book_base(spec)
+def kayak(spec, sec, c):
+    ret_date = c["ret_date"]
+    origin = sec["origin"]; dest = sec.get("dest", spec["dest"])
+    outd = c.get("out_date", sec.get("out_date", spec["out_date"])); dom = book_base(spec)
     if sec.get("linktype") == "openjaw":
         return "https://{}/flights/{}-{}/{}/{}-{}/{}?sort=bestflight_a".format(
             dom, origin, dest, outd, dest, sec["openjaw_dest"], ret_date)
@@ -68,11 +70,11 @@ def rows(spec, sec, combos, cur):
         bar = int((1 - c["score"]) * 100)
         medal = {1: "1st", 2: "2nd", 3: "3rd"}.get(i, str(i))
         lf = " warn" if c["longest"] >= 1300 else ""
-        link = kayak(spec, sec, c["ret_date"])
+        link = kayak(spec, sec, c)
         out.append(
             '<tr>'
             '<td class="rank">' + medal + '</td>'
-            '<td><b>' + esc(spec["out_label"]) + '</b> ' + esc(c["o"]["t"]) + '<br>' + legcell(c["o"]) + '</td>'
+            '<td><b>' + esc(c.get("out_label", sec.get("out_label", spec["out_label"]))) + '</b> ' + esc(c["o"]["t"]) + '<br>' + legcell(c["o"]) + '</td>'
             '<td><b>' + esc(c["ret_label"]) + '</b> ' + esc(c["r"]["t"]) + '<br>' + legcell(c["r"]) + '</td>'
             '<td class="price">' + cur + str("{:,}".format(c["price"])) + '</td>'
             '<td class="ctr">' + str(c["stops"]) + '</td>'
