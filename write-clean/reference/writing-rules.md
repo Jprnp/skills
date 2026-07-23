@@ -10,6 +10,10 @@ Shared rulebook for the `write-clean`, `deslop`, and `polish-voice` skills. It m
 Each skill says which parts apply and how hard. Read the mode section in the skill, then apply the
 relevant rules below. Never change facts, numbers, model names, quotes, or code.
 
+**Language.** For English text, use the word/phrase lists in Sections A–B. For Portuguese (pt-BR),
+use Section I instead. The grammar, punctuation, voice, and formatting rules (C–G) apply to both.
+Detect the language from the input; do not translate unless asked.
+
 ---
 
 ## A. Banned words and phrases (cut or replace)
@@ -113,3 +117,47 @@ a local lookup with the `ste-dict` tool (see its README).
 - **If it is absent:** skip this step. Use Sections A–F only. Do not guess the approved list.
 - That file is a derivative of the copyrighted dictionary. Never copy its contents into any output
   that gets published, committed, or shared — use it only to guide word choice.
+
+## I. Portuguese (pt-BR)
+
+These skills work in Portuguese too. The clarity, grammar, punctuation, voice, and formatting rules
+(Sections C–G) are language-agnostic — apply them to Portuguese as written. Only the word/phrase
+lists change: use this section in place of Sections A–B.
+
+There is no official "Português Técnico Simplificado" with an approved-word dictionary (STE is
+English-only). For a formal anchor, follow Plain Language — Linguagem Simples / Linguagem Clara and
+ISO 24495-1. The optional approved-word dictionary (Section H) is English-only and does NOT apply to
+Portuguese text; skip it for pt-BR.
+
+### Banned words and phrases (pt-BR) — cut or replace with plain words
+
+Burocratês (troque por linguagem simples ou corte):
+
+- outrossim, destarte, doravante, supramencionado, ora em comento, em epígrafe, à guisa de,
+  por derradeiro, haja vista, no que tange (a), no que concerne (a), no que diz respeito a,
+  cumpre destacar, cumpre ressaltar, cabe ressaltar, cabe mencionar, importa salientar
+
+Aberturas e enchimento vazios (corte o pigarro):
+
+- "vale (a pena) ressaltar", "é importante notar/frisar", "no mundo de hoje", "nos dias de hoje",
+  "ao final do dia", "em última análise", "de suma importância", "antes de mais nada",
+  "sem mais delongas", "vamos mergulhar", "por assim dizer"
+
+Corporatês / slop de IA (evite o jargão inflado):
+
+- alavancar, potencializar, robusto, poderoso, disruptivo, revolucionário, transformador,
+  sinergia, "entregar valor", "agregar valor", "divisor de águas", "game changer", "mão na massa",
+  "solução" (como enchimento), escalar (como buzzword), desbloquear/destravar (como buzzword)
+
+Advérbios frequentemente vazios (corte se não carregam sentido):
+
+- literalmente, honestamente, simplesmente, basicamente, realmente, fundamentalmente,
+  efetivamente, meramente, sinceramente
+
+### Notas de gramática para pt-BR
+
+- Prefira a voz ativa: "a equipe entregou", não "foi entregue pela equipe".
+- Troque o rebuscado pelo direto: "para" em vez de "a fim de"; "sobre/quanto a" em vez de
+  "no que tange a"; "porque" em vez de "haja vista que"; "assim" em vez de "destarte".
+- Use um sujeito claro. Evite o "se" impessoal quando existe um sujeito real.
+- Mantenha os artigos. Use tempos verbais simples. Uma ideia por frase.
