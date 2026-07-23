@@ -17,3 +17,8 @@ node_modules/
 # Local secrets / scratch
 .env
 *.local
+
+# ASD-STE100 is copyright ASD and must NOT be redistributed.
+# The PDF and any lookup extracted from it are copyrighted / derivative — keep them local.
+*.pdf
+ste-dictionary.json
